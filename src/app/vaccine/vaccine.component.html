@@ -1,0 +1,9 @@
+<h2>Vaccine list</h2>
+<ul>
+        <li *ngFor="let vaccine of vaccines"
+        (click) = "onSelect(vaccine)"
+        [class.selected] = "vaccine === selectedVaccine">
+        <span class="badge"> {{vaccine.manufacturersName}}</span>     
+    </li>
+</ul>
+<app-vaccine-detail [vaccine] = "selectedVaccine"></app-vaccine-detail>
