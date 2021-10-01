@@ -1,3 +1,21 @@
+
+<h2>Vaccine list</h2>
+<ul>
+        <li *ngFor="let vaccine of vaccines" >
+        <a routerLink ="/detail/{{vaccine.manufacturersName}}">
+        <span class="badge"> {{vaccine.manufacturersName}}</span>   
+        </a>  
+    </li>
+</ul>
+
+
+
+
+
+
+
+<!--
+
 <h2>Vaccine list</h2>
 <ul>
         <li *ngFor="let vaccine of vaccines"
@@ -7,3 +25,54 @@
     </li>
 </ul>
 <app-vaccine-detail [vaccine] = "selectedVaccine"></app-vaccine-detail>
+
+
+
+
+-->
+
+
+
+<div>
+    <h3> Add new vaccine </h3>
+    <div>
+        <label> Research Name: 
+            <input #researchName />
+        </label>
+    </div>
+    <div>
+        <label> Manufacturers Name: 
+            <input #manufacturersName />
+        </label>
+    </div>
+    <div>
+        <label> VaccineT ype: 
+            <input #vaccineType />
+        </label>
+    </div>
+    <div>
+        <label> Required Dosage: 
+            <input type="number" #requiredDosageS />
+        </label>
+    </div>
+    <div>
+        <label> Available Dosage Count: 
+            <input  type="number" #availableDosageCountS />
+        </label>
+    </div>
+
+    <button (click)="addVaccine(researchName.value, manufacturersName.value, vaccineType.value, requiredDosageS.value, availableDosageCountS.value);
+    researchName.value=''; manufacturersName.value=''; vaccineType.value=''; requiredDosageS.value=''; availableDosageCountS.value=''">
+    Add vaccine
+</button>
+</div>
+
+
+
+
+
+
+
+
+
+

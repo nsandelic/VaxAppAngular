@@ -20,8 +20,27 @@ export class VaccineComponent implements OnInit {
   }
 
   getVaccines(): void {
-    this.vaccineService.getVaccines()
+    this.vaccineService.getVaccineSpring()
       .subscribe(vaccines => this.vaccines = vaccines);
+  }
+
+  addVaccine(researchName: string, manufacturersName: string, vaccineType: string, requiredDosageS: string, availableDosageCountS: string): void {
+    researchName = researchName.trim();
+    manufacturersName = manufacturersName.trim();
+    vaccineType = vaccineType.trim();
+    const requiredDosage: number = +requiredDosageS;
+    const availableDosageCount: number = +availableDosageCountS;
+  
+   
+    if( !researchName || !manufacturersName || !vaccineType || !requiredDosage  || !availableDosageCount )
+      return console.log("Wrong input");
+
+      const vax = { researchName, manufacturersName, vaccineType, requiredDosage, availableDosageCount} as Vaccine;
+
+    
+
+    this.vaccineService.addVaccine(vax)
+      .subscribe(newVax => this.vaccines.push(newVax));
   }
 
   onSelect(vaccine: Vaccine): void {
