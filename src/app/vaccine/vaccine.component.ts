@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Vaccine } from '../vaccine';
 import { VaccineService } from '../vaccine.service';
 
@@ -21,15 +21,27 @@ export class VaccineComponent implements OnInit {
 
   getVaccines(): void {
     this.vaccineService.getVaccineSpring()
-      .subscribe(vaccines => this.vaccines = vaccines);
+      .subscribe( vaccines => 
+        this.vaccines = vaccines,
+        
+        );
+      
   }
 
-  addVaccine(researchName: string, manufacturersName: string, vaccineType: string, requiredDosageS: string, availableDosageCountS: string): void {
+  deleteVaccine(researchName: String): void {
+    this.vaccineService.deleteVaccine(researchName)
+      .subscribe(vaccine => {this.vaccines.pop();
+  })
+}
+
+
+  addVaccine( researchName: string, manufacturersName: string, vaccineType: string, requiredDosageS: string, availableDosageCountS: string): void {
     researchName = researchName.trim();
     manufacturersName = manufacturersName.trim();
     vaccineType = vaccineType.trim();
     const requiredDosage: number = +requiredDosageS;
     const availableDosageCount: number = +availableDosageCountS;
+    
   
    
     if( !researchName || !manufacturersName || !vaccineType || !requiredDosage  || !availableDosageCount )
@@ -41,6 +53,8 @@ export class VaccineComponent implements OnInit {
 
     this.vaccineService.addVaccine(vax)
       .subscribe(newVax => this.vaccines.push(newVax));
+      //this.getVaccines();
+     // window.location.reload(); -> temp solution: page refresh
   }
 
   onSelect(vaccine: Vaccine): void {

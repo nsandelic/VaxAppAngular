@@ -2,9 +2,10 @@
 <h2>Vaccine list</h2>
 <ul>
         <li *ngFor="let vaccine of vaccines" >
-        <a routerLink ="/detail/{{vaccine.manufacturersName}}">
-        <span class="badge"> {{vaccine.manufacturersName}}</span>   
+        <a routerLink ="/detail/{{vaccine?.manufacturersName}}">
+        <span class="badge"> {{vaccine?.manufacturersName}}</span>   
         </a>  
+        <button class="deleteButton" (click)="deleteVaccine(vaccine.manufacturersName)" > X </button>
     </li>
 </ul>
 

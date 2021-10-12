@@ -14,8 +14,15 @@ export class VaccineService {
   
   
   httpOptions = {
-    headers: new HttpHeaders ({'Content Type':  'application/json' })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+    })
   };
+
+
 
 
   constructor(
@@ -41,6 +48,22 @@ export class VaccineService {
       catchError(this.handleError<Vaccine>('addVaccine'))
     );
   }
+
+  deleteVaccine(manufacturersName: String): Observable<Vaccine> {
+    const url = `${this.vaccineUrl}/${manufacturersName}`;
+
+    return this.http.delete<Vaccine>(this.vaccineUrl, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })   })
+    .pipe(
+      tap(_ => console.log('Vaccine Deleted')),
+      catchError(this.handleError<Vaccine>('deleteVaccine'))
+    );
+    
+
+  }
+
+
+
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
