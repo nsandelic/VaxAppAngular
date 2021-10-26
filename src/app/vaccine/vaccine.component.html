@@ -5,64 +5,44 @@
         <a routerLink ="/detail/{{vaccine?.manufacturersName}}">
         <span class="badge"> {{vaccine?.manufacturersName}}</span>   
         </a>  
-        <button class="deleteButton" (click)="deleteVaccine(vaccine.manufacturersName)" > X </button>
+        <button class="deleteButton" (click)="deleteVaccine(vaccine)" > X </button>
     </li>
 </ul>
 
 
-
-
-
-
-
-<!--
-
-<h2>Vaccine list</h2>
-<ul>
-        <li *ngFor="let vaccine of vaccines"
-        (click) = "onSelect(vaccine)"
-        [class.selected] = "vaccine === selectedVaccine">
-        <span class="badge"> {{vaccine.manufacturersName}}</span>     
-    </li>
-</ul>
-<app-vaccine-detail [vaccine] = "selectedVaccine"></app-vaccine-detail>
-
-
-
-
--->
-
-
-
-<div>
+<div class="add">
     <h3> Add new vaccine </h3>
-    <div>
+    <div class="formItem">
         <label> Research Name: 
             <input #researchName />
         </label>
     </div>
-    <div>
+    <div class="formItem">
         <label> Manufacturers Name: 
             <input #manufacturersName />
         </label>
     </div>
-    <div>
+    <div class="formItem">
         <label> VaccineT ype: 
-            <input #vaccineType />
+            <select #vaccineType>
+                <option value="RNA">RNA</option>
+                <option value="Viral Vecto">Viral Vector</option>
+              </select>
+            
         </label>
     </div>
-    <div>
+    <div class="formItem">
         <label> Required Dosage: 
             <input type="number" #requiredDosageS />
         </label>
     </div>
-    <div>
+    <div class="formItem">
         <label> Available Dosage Count: 
             <input  type="number" #availableDosageCountS />
         </label>
     </div>
 
-    <button (click)="addVaccine(researchName.value, manufacturersName.value, vaccineType.value, requiredDosageS.value, availableDosageCountS.value);
+    <button  class="addButton" (click)="addVaccine(researchName.value, manufacturersName.value, vaccineType.value, requiredDosageS.value, availableDosageCountS.value);
     researchName.value=''; manufacturersName.value=''; vaccineType.value=''; requiredDosageS.value=''; availableDosageCountS.value=''">
     Add vaccine
 </button>

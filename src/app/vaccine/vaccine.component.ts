@@ -1,4 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { SideEffectService } from '../side-effect.service';
+import { SideEffect } from '../sideEffect';
 import { Vaccine } from '../vaccine';
 import { VaccineService } from '../vaccine.service';
 
@@ -23,16 +25,20 @@ export class VaccineComponent implements OnInit {
     this.vaccineService.getVaccineSpring()
       .subscribe( vaccines => 
         this.vaccines = vaccines,
-        
-        );
-      
+        ); 
   }
 
-  deleteVaccine(researchName: String): void {
-    this.vaccineService.deleteVaccine(researchName)
-      .subscribe(vaccine => {this.vaccines.pop();
-  })
+
+deleteVaccine(vaccine: Vaccine ): void {
+  const idx = this.vaccines.indexOf(vaccine as Vaccine);
+  console.log(idx);
+  this.vaccineService.deleteVaccine(vaccine)
+  .subscribe(vaccine => {
+    this.vaccines.splice(idx, 1);
+    });
 }
+
+
 
 
   addVaccine( researchName: string, manufacturersName: string, vaccineType: string, requiredDosageS: string, availableDosageCountS: string): void {
@@ -41,20 +47,21 @@ export class VaccineComponent implements OnInit {
     vaccineType = vaccineType.trim();
     const requiredDosage: number = +requiredDosageS;
     const availableDosageCount: number = +availableDosageCountS;
-    
+    const id: any = undefined;
   
    
     if( !researchName || !manufacturersName || !vaccineType || !requiredDosage  || !availableDosageCount )
       return console.log("Wrong input");
 
-      const vax = { researchName, manufacturersName, vaccineType, requiredDosage, availableDosageCount} as Vaccine;
+      const vax = { id, researchName, manufacturersName, vaccineType, requiredDosage, availableDosageCount} as Vaccine;
 
     
 
     this.vaccineService.addVaccine(vax)
       .subscribe(newVax => this.vaccines.push(newVax));
-      //this.getVaccines();
-     // window.location.reload(); -> temp solution: page refresh
+
+    
+     
   }
 
   onSelect(vaccine: Vaccine): void {

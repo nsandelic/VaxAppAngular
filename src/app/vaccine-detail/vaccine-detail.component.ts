@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SideEffectService } from '../side-effect.service';
+import { SideEffect } from '../sideEffect';
 import { Vaccine } from '../vaccine';
 import { VaccineService } from '../vaccine.service';
 
@@ -14,14 +16,18 @@ export class VaccineDetailComponent implements OnInit {
   error: any;
   
   //@Input() vaccine: Vaccine;
+  sideEffects: SideEffect[];
+  x: number = 0;
 
   constructor(
     private route:ActivatedRoute,
-    private service:VaccineService
+    private service:VaccineService,
+    private sideEffectService: SideEffectService
   ) { }
 
   ngOnInit(): void {
     this.loadVaccine();
+    this.getSideEffects();
   }
 
   loadVaccine(){
@@ -31,7 +37,14 @@ export class VaccineDetailComponent implements OnInit {
       data => this.vaccine = data,
       error => this.error = error
     )
+  }
 
+
+  getSideEffects(): void {
+    this.sideEffectService.getSideEffects()
+      .subscribe( data => 
+        this.sideEffects = data
+        ); 
   }
 
 

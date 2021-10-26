@@ -14,12 +14,7 @@ export class VaccineService {
   
   
   httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
-    })
+    headers: new HttpHeaders({'Content-Type': 'application/json',})
   };
 
 
@@ -49,10 +44,10 @@ export class VaccineService {
     );
   }
 
-  deleteVaccine(manufacturersName: String): Observable<Vaccine> {
-    const url = `${this.vaccineUrl}/${manufacturersName}`;
+  deleteVaccine(vaccine: Vaccine): Observable<Vaccine> {
+    const delteUrl = `${this.vaccineUrl}/${vaccine.manufacturersName}`;
 
-    return this.http.delete<Vaccine>(this.vaccineUrl, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })   })
+    return this.http.delete<Vaccine>(delteUrl, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })   })
     .pipe(
       tap(_ => console.log('Vaccine Deleted')),
       catchError(this.handleError<Vaccine>('deleteVaccine'))

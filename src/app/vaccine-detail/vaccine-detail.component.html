@@ -1,5 +1,18 @@
 <div >
     <h2>{{vaccine?.manufacturersName}} - Vaccine details</h2>
     <div><span>Manufacturers Name: </span>{{vaccine?.manufacturersName}}</div>
+    <div><span>Researc Name: </span>{{vaccine?.researchName}}</div>
+    <div><span>Vaccine Type: </span>{{vaccine?.vaccineType}}</div>
     <div><span>Required number of shots: </span>{{vaccine?.requiredDosage}}</div>
+    <div><span>Number of available dosage: </span>{{vaccine?.availableDosageCount}}</div>
+</div>
+
+
+<div>
+    <h3>Side effects reported for this vaccine:</h3>
+    <ul *ngFor="let sideEffect of sideEffects">
+        <li *ngIf="sideEffect.vaccineId == vaccine.id" > 
+            <span >{{sideEffect.name}} - {{sideEffect.frequency}}</span>
+        </li>
+    </ul>
 </div>
