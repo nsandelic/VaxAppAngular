@@ -5,26 +5,29 @@
         <a routerLink ="/detail/{{vaccine?.manufacturersName}}">
         <span class="badge"> {{vaccine?.manufacturersName}}</span>   
         </a>  
-        <button class="deleteButton" (click)="deleteVaccine(vaccine)" > X </button>
+        <ng-container *ngIf="userService.isRoleAdmin()">
+        <button  class="deleteButton" (click)="deleteVaccine(vaccine)" > X </button>
+        </ng-container>
     </li>
 </ul>
 
 
+<ng-container *ngIf="userService.isRoleAdmin()">
 <div class="add">
     <h3> Add new vaccine </h3>
     <div class="formItem">
         <label> Research Name: 
-            <input #researchName />
+            <br><input #researchName />
         </label>
     </div>
     <div class="formItem">
         <label> Manufacturers Name: 
-            <input #manufacturersName />
+            <br><input #manufacturersName />
         </label>
     </div>
     <div class="formItem">
         <label> VaccineT ype: 
-            <select #vaccineType>
+           <br> <select #vaccineType>
                 <option value="RNA">RNA</option>
                 <option value="Viral Vecto">Viral Vector</option>
               </select>
@@ -33,12 +36,12 @@
     </div>
     <div class="formItem">
         <label> Required Dosage: 
-            <input type="number" #requiredDosageS />
+           <br> <input type="number" #requiredDosageS />
         </label>
     </div>
     <div class="formItem">
         <label> Available Dosage Count: 
-            <input  type="number" #availableDosageCountS />
+            <br><input  type="number" #availableDosageCountS />
         </label>
     </div>
 
@@ -47,7 +50,7 @@
     Add vaccine
 </button>
 </div>
-
+</ng-container>
 
 
 

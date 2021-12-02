@@ -1,0 +1,47 @@
+<nav class="navBar">
+    <a [routerLink]="['/']" class="vaxLink">
+        <h3 class="title">Vax App</h3>
+    </a>
+
+    <div>
+        <ul>
+            <!-- here we can add other links, just in <li> tag -->
+            <!-- user stuff -->
+            <ul class="loggedBar" *ngIf="isUserLoggedIn()">
+
+                <li class="nav-item">
+                    <a class="logout" (click)="logout()">
+                        <span> Odjava</span>
+                    </a>
+                </li>
+            
+                <li class="nav-item">
+                    <a>
+                        <span>|</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a>
+                        <span>Uloga: <span *ngFor="let role of userService?.currentUser?.authorities">{{role}} </span></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a>
+                        <span>|</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a>
+                        <span>Korisničko ime: {{userService?.currentUser?.username}}</span>
+                    </a>
+                </li>
+            </ul>
+
+            <li class="login" *ngIf="!isUserLoggedIn()">
+                <a [routerLink]="['/login']"  id="loginLink">
+                    <span> Login</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

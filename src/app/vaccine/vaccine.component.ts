@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { SideEffectService } from '../side-effect.service';
-import { SideEffect } from '../sideEffect';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user/user.service';
 import { Vaccine } from '../vaccine';
 import { VaccineService } from '../vaccine.service';
 
@@ -15,7 +14,7 @@ export class VaccineComponent implements OnInit {
   vaccines: Vaccine[];
   selectedVaccine: Vaccine;
 
-  constructor(private vaccineService: VaccineService) { }
+  constructor(private vaccineService: VaccineService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.getVaccines();

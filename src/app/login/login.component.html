@@ -1,0 +1,23 @@
+<body>  
+<h2>Vax App Login</h2><br>    
+<div class="login">    
+    <form #authenticationForm="ngForm">    
+        <label>Username</label> <br>    
+        <input [(ngModel)]="userCredentials.username" [disabled]="authenticating" appInputAutoFocus
+            autocomplete="username" class="form-control" id="Uname" name="username"
+            placeholder="Enter username" required type="username">        
+        <label>Password</label>    
+        <input [(ngModel)]="userCredentials.password" [disabled]="authenticating" appInputAutoFocus
+            autocomplete="current-password" class="form-control" id="Pass" name="password"
+            placeholder="Enter password" required type="password">      
+        <button (click)="login()" id="log" [disabled]="!authenticationForm.valid || authenticating"
+            type="submit" > Login
+            <span *ngIf="authenticating"></span>
+        </button>    
+        <div id="failMsg" *ngIf="loginFailed">
+            Login failed. Please check your credentials.
+        </div>   
+    </form>     
+</div>    
+
+</body>

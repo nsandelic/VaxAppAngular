@@ -1,21 +1,26 @@
-span, h2, a{
+h1 {
     font-family: Arial;
-}
-a{
+    font-size: 45px;
+  }
+  a{
     border-radius: 25px;
     border: 2px solid #325D97;
-    padding: 10px 15px;
+    padding: 15px 20px;
     color: white;
     background-color: #325D97;
     text-decoration: none;
     cursor: pointer;
-    margin-top: 50px;
     
   }
   a:hover{
       background-color: #1B3A64;
       border: 2px solid #1B3A64;
   }
-  .back{
-      margin-top: 50px ;
+ 
+  .box{
+    margin: auto ;
+    height: 250px;
+    width: 50%;
+    text-align: center;
   }
+

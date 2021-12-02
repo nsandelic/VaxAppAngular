@@ -1,8 +1,10 @@
-<body>
-
-<h1>VaxApp</h1>
-<nav>
-    <a routerLink="/vaccines">Vaccines</a>
-</nav>
-<router-outlet></router-outlet>
-</body>
+<div>
+    <div>
+        <app-navbar></app-navbar>
+    </div>
+    <div class="row" style="margin-top: 80px;">
+        <div >
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

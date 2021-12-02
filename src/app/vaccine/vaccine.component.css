@@ -1,3 +1,6 @@
+h2, h3, label {
+    font-family: Arial;
+}
 li{
     margin-bottom: 15px;
     padding: 10px 0px;
@@ -11,7 +14,7 @@ li:hover{
 }
 .deleteButton{
     cursor: pointer;
-    display: inline-block;
+    
     color: white;
     background-color: gray;
     float: right;
@@ -24,6 +27,7 @@ ul{
 }
 a{
     color: white;
+    font-family: Arial;
     text-decoration: none;
     display: inline-block;
     margin-left: 15px;
@@ -36,6 +40,8 @@ a{
     background-color: #325D97;
     text-decoration: none;
     cursor: pointer;
+    margin-top: 10px;
+    margin-left: 35px;
 }
 .addButton:hover{
     background-color: #1B3A64;
@@ -46,4 +52,5 @@ a{
 }
 .formItem{
     margin-bottom: 5px;
+    margin-left: 35px;
 }
